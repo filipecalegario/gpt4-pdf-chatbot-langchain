@@ -195,7 +195,7 @@ export default function Home() {
                                       {doc.pageContent}
                                     </ReactMarkdown>
                                     <p className="mt-2">
-                                      <b>Fonte:</b> {doc.metadata.source}
+                                      <b>Fonte:</b> {doc.metadata.source.replace('/Users/filipecalegario/git/GONCALVES_DIAS/gpt4-pdf-chatbot-langchain/docs/', '')}
                                     </p>
                                   </AccordionContent>
                                 </AccordionItem>

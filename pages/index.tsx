@@ -25,7 +25,7 @@ export default function Home() {
   }>({
     messages: [
       {
-        message: 'Hi, what would you like to learn about this legal case?',
+        message: 'Olá! Este é um chat para interação com o acervo codificado de livros sobre Gonçalves Dias. Como posso ajudar?',
         type: 'apiMessage',
       },
     ],
@@ -48,7 +48,7 @@ export default function Home() {
     setError(null);
 
     if (!query) {
-      alert('Please input a question');
+      alert('Coloque uma pergunta');
       return;
     }
 
@@ -106,7 +106,7 @@ export default function Home() {
       messageListRef.current?.scrollTo(0, messageListRef.current.scrollHeight);
     } catch (error) {
       setLoading(false);
-      setError('An error occurred while fetching the data. Please try again.');
+      setError('Ocorreu um erro ao buscar os dados. Por favor, tente novamente.');
       console.log('error', error);
     }
   }
@@ -137,7 +137,7 @@ export default function Home() {
                     icon = (
                       <Image
                         key={index}
-                        src="/bot-image.png"
+                        src="/books-no-bg.png"
                         alt="AI"
                         width="40"
                         height="40"
@@ -188,14 +188,14 @@ export default function Home() {
                               <div key={`messageSourceDocs-${index}`}>
                                 <AccordionItem value={`item-${index}`}>
                                   <AccordionTrigger>
-                                    <h3>Source {index + 1}</h3>
+                                    <h3>Referência {index + 1}</h3>
                                   </AccordionTrigger>
                                   <AccordionContent>
                                     <ReactMarkdown linkTarget="_blank">
                                       {doc.pageContent}
                                     </ReactMarkdown>
                                     <p className="mt-2">
-                                      <b>Source:</b> {doc.metadata.source}
+                                      <b>Fonte:</b> {doc.metadata.source}
                                     </p>
                                   </AccordionContent>
                                 </AccordionItem>
@@ -223,8 +223,8 @@ export default function Home() {
                     name="userInput"
                     placeholder={
                       loading
-                        ? 'Waiting for response...'
-                        : 'What is this legal case about?'
+                      ? 'Esperando resposta...'
+                      : 'Escreva aqui sua pergunta'
                     }
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -260,11 +260,11 @@ export default function Home() {
             )}
           </main>
         </div>
-        <footer className="m-auto p-4">
+        {/* <footer className="m-auto p-4">
           <a href="https://twitter.com/mayowaoshin">
             Powered by LangChainAI. Demo built by Mayo (Twitter: @mayowaoshin).
           </a>
-        </footer>
+        </footer> */}
       </Layout>
     </>
   );

@@ -5,12 +5,14 @@ import { pinecone } from '@/utils/pinecone-client';
 import { CustomPDFLoader } from '@/utils/customPDFLoader';
 import { PINECONE_INDEX_NAME, PINECONE_NAME_SPACE } from '@/config/pinecone';
 import { DirectoryLoader } from 'langchain/document_loaders/fs/directory';
+import process from "process";
 
 /* Name of directory to retrieve your files from */
 const filePath = 'docs';
 
 export const run = async () => {
   try {
+    process.env.LANGCHAIN_TRACING = "true";
     /*load raw docs from the all files in the directory */
     const directoryLoader = new DirectoryLoader(filePath, {
       '.pdf': (path) => new CustomPDFLoader(path),
@@ -21,8 +23,8 @@ export const run = async () => {
 
     /* Split text into chunks */
     const textSplitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 600,
-      chunkOverlap: 150,
+      chunkSize: 1000,
+      chunkOverlap: 200,
     });
 
     const docs = await textSplitter.splitDocuments(rawDocs);
